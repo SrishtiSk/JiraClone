@@ -1,0 +1,109 @@
+<!-- <div class="main">
+    <div class="container-fluid">
+        glitch
+        aproject management tool
+        signin with fb button
+        wignin with twitter button
+        signin with google button
+    </div>
+    <div class="account">
+        login to your account
+        already have account? login
+
+        <form type="">
+            email
+            password
+
+            remember me tickbox   forgotpassword
+
+            login with emial button
+        </form>
+    </div>
+</div> -->
+
+<div class="main">
+    <div class="container-fluid">
+        <div class="row" style="padding-left: 20%; padding-top: 10%;">
+            <div class="col-sm-5 authfy-panel-left pt-5" style="width: 300px; height: 400px;">
+                <div class="brand-col">
+                    <div class="headline">
+                        <div class="brand-logo">
+                            <img src="assets/glichlogo.svg" alt="brand-logo" style="width: 100%;"/>
+                        </div>
+                        <p class="pt-2 text-center">a project Management Tool</p>
+                        <div class="social-buttons pt-2 ps-4">
+                            <div class="p-2">
+                                <a class="btn btn-block btn-facebook">
+                                    <i class="fa-brands fa-facebook"></i>
+                                    <span class="hidden-xs hidden-sm p-1">signin with Facebook</span>
+                                </a>
+                            </div>
+                            <div class="p-2">
+                                <a class="btn btn-block btn-twitter">
+                                    <i class="fa-brands fa-twitter"></i>
+                                    <span class="hidden-xs hidden-sm p-2">signin with Twitter</span>
+                                </a>
+                            </div>
+                            <div class="p-2">
+                                <a class="btn btn-block btn-google">
+                                    <i class="fa-brands fa-google-plus"></i>
+                                    <span class="hidden-xs hidden-sm p-2">signin with Google</span>
+                                </a>
+                            </div>
+                        </div><!-- end of social-buttons -->
+                    </div><!-- end of headline-->
+
+                </div><!-- end of brand col -->
+            </div><!-- end of authfy-panel-left -->
+
+            <div class="authfy-panel-right col-sm-7" style="background-color: white; width: 535px;">
+                <div class="authfy-login">
+                    <div class="authfy-panel panel-login text-center active">
+                        <div class="authfy-heading pe-4">
+                            <h3 class="auth-title">Login to your account</h3>
+
+                            <p>Already Have Account? <a class="lnk-toggler" data-panel=".panel-signup">Login In</a></p>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12">
+                                <form class="loginForm" name="loginForm" action="#" method="post">
+                                    <div class="form-group">
+                                        <input type="email" [(ngModel)]="loginObj.emailId" class="form-control email my-2" name="emailId"
+                                           placeholder="Email Address" style="width: 80%;"/>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="pwdMask">
+                                            <span class="d-flex">
+                                                <input type="text" [(ngModel)]="loginObj.password" class="form-control password" name="password"
+                                                 placeholder="Password" style="width: 80%;">
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row remember-row d-flex pt-4 me-5">
+                                        <div class="remember-box col-xs-6 col-sm-6">
+                                            <label class="checkbox text-left">
+                                                <input type="checkbox" value="remember-me">
+                                                <span class="label-text">Remember me</span>
+                                            </label>
+                                        </div>
+                                        <div class="col-xs-6 col-sm-6">
+                                            <p class="forgotPwd">
+                                                <a class="lnk-toggler" data-panel=".panel-forgot">Forgot Password?</a>
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <button class="btn btn-lg btn-primary btn-block" type="button" (click)="onLogin()" style="width: 80%;">
+                                        Login with email</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of authfy-panel-right-->
+        </div>
+    </div> <!-- end of container-fluid -->
+</div><!-- end of main -->
