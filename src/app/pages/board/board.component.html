@@ -5,7 +5,7 @@
                 <div><h4>{{selectedProjectData.projectName}}</h4></div>
             </div>
         </div>
-    </div>
+    </div> 
     <div class="row mt-3">
         <div class="col-12">
             <div class="d-flex">
@@ -16,13 +16,14 @@
             </div>
         </div>
     </div>
+
     <div class="row pt-1">
-        <div class="col" *ngFor="let status of status">
+        <div class="col" *ngFor="let status of status" (dragover)="onDragOver($event)" (drop)="onDrop($event, status)">
             <div class="card card-bg">
                 <div class="card-header border-0 py-1"> {{status}}</div>
                 <div class="card-body ticket-bg border">
-                    <div class="card-Body-Hover m-1 rounded-1 task"
-                        draggable="true" *ngFor="let ticket of filterTicket(status)">
+                    <div class="card-Body-Hover m-1 rounded-1 task" *ngFor="let ticket of filterTicket(status)"
+                        draggable="true" (dragstart)="onDragStart(ticket)">
                         <div class="my-1 fw-bold">{{ticket.summary}}</div>
                         <div class="row">
                             <div class="col-4">
