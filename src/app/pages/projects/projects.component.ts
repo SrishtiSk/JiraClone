@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-projects',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectsComponent implements OnInit {
 
+  
   projectList:any[]=[];
   projectObj:any = {
     "projectId": 0,
@@ -15,6 +16,10 @@ export class ProjectsComponent implements OnInit {
     "shortName": "",
     "createdDate": new Date()
   }
+  projectToDelete:any;
+  projectToDeleteName:any;
+  editProject:any;
+
   constructor(private http:HttpClient){}
 
   ngOnInit():void{
@@ -26,6 +31,7 @@ export class ProjectsComponent implements OnInit {
     .subscribe((res:any)=>{
       this.projectList = res.data;
     })
+    return this.projectList;
   }
 
  
@@ -42,7 +48,28 @@ export class ProjectsComponent implements OnInit {
     })
   }
 
+  ConfirmDeleteProject(projectId:number){
+    this.projectToDelete = this.getAllProjects().find((p:any)=> p.projectId == projectId);
+  }
 
+  deleteProject(projectIdToDelete:any){
+    this.http.delete(`https://freeapi.miniprojectideas.com/api/Jira/DeleteProjectById?id=${projectIdToDelete}`)
+    .subscribe((res:any)=> {
+      if(res){
+        alert(res.message);
+      }
+      this.getAllProjects();
+    },
+    (error) => {
+      // Handle errors, display an error message, etc.
+      console.error('Error deleting user', error);
+    }
+    );
+  }
 
+  ConfirmEditProject(projectId:number){
+    this.editProject= this.getAllProjects().find((p:any)=> p.projectId == projectId);
+    this.projectToDeleteName = this.projectToDelete.fullName;
+  }
 
 }

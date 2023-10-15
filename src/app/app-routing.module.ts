@@ -5,6 +5,7 @@ import { LayoutComponent } from './pages/layout/layout.component';
 import { ProjectsComponent } from './pages/projects/projects.component';
 import { UsersComponent } from './pages/users/users.component';
 import { BoardComponent } from './pages/board/board.component';
+import { KanbanComponent } from './kanban/kanban.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
       {
         path:'board',
         component:BoardComponent
+      },
+      {
+        path:'kanban',
+        component:KanbanComponent
       }
     ]
   }
