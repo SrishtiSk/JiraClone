@@ -18,15 +18,17 @@ export class UsersComponent implements OnInit {
 
   userList:any=[];
   
-  userToDelete: any;
-  userToDeleteName:any;
+  deleteUserObj: any={
+    "userId": 0,
+    "emailId": "string",
+    "fullName": "string",
+    "password": "string"
+  }
+
 
   constructor(private http:HttpClient){}
-  @ViewChild('DeleteUserModal') DeleteUserModal!: ElementRef;
-
-
+  //@ViewChild('DeleteUserModal') DeleteUserModal!: ElementRef;
  
-
   ngOnInit():void{
     this.getAllUsers();
   }
@@ -40,40 +42,50 @@ export class UsersComponent implements OnInit {
   }
 
  
-  onSave(){
-    this.http.post('https://freeapi.miniprojectideas.com/api/Jira/CreateUser', this.userObj)
-    .subscribe((res:any)=>{
-      if(res.result){
-        alert(res.message);
-        this.getAllUsers();
-      }
-      else{
-        alert(res.message);
-      }
-    })
+  onSave(action:string){
+    const url = `https://freeapi.miniprojectideas.com/api/Jira/${action}User`;
+    if(action == 'Create'){
+      this.http.post(url, this.userObj).subscribe((res:any)=>{
+        this.subscriptionHandeling(res);
+      });
+    }
+    else{
+      this.http.put(url, this.userObj).subscribe((res:any)=>{
+        this.subscriptionHandeling(res);
+      });
+    }
+    this.userObj= {};
+  }
+  closeModal(){
+    this.userObj = {};
   }
 
-
-  ConfirmDeleteModal(userId: number) {
-   // this.isModalVisible=true;
-    this.userToDelete= this.getAllUsers().find((u:any)=>u.userId==userId);
-    this.userToDeleteName=this.userToDelete.fullName;
+  subscriptionHandeling(res:any){
+    if(res.result){
+      alert(res.message);
+      this.getAllUsers();
+    }
+    else{
+      alert(res.message);
+    }
   }
 
-  deleteUser(userIdToDelete:any) {
+ 
+  ConfirmModal(user:any, action:string){
+    if(action == 'delete'){
+      this.deleteUserObj = user;
+    }
+    if(action == 'edit'){
+      this.userObj = user;
+    }
+  }
+
+  DeleteUser(userIdToDelete:any) {
     this.http.delete(`https://freeapi.miniprojectideas.com/api/Jira/DeleteUserById?id=${userIdToDelete}`)
     .subscribe(
-      (res:any) => {
-        if(res){
-          alert(res.message);
-        }
-        this.getAllUsers();
-      },
-      (error) => {
-        // Handle errors, display an error message, etc.
-        console.error('Error deleting user', error);
-      }
+      (res:any) => this.subscriptionHandeling(res)
     );
+    this.deleteUserObj = {};
   }
 
 }
