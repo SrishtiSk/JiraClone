@@ -1,7 +1,10 @@
 # JiraClone
 
 This project was done with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
-Api are used from [freeapi.miniprojectideas](https://freeapi.miniprojectideas.com/index.html
+
+Api are used from [freeapi.miniprojectideas](https://freeapi.miniprojectideas.com/index.html)
+
+[Click here the live project:]()
 
 version 1: basic skeletal of the jira clone is done.
 things achived in version 1:
